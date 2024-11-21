@@ -5,3 +5,6 @@ build_image:
 
 build_image_from_cache:
 	docker build . --tag mrdxdy/ftp-server:${VERSION}
+
+deploy:
+	docker push mrdxdy/ftp-server:${VERSION}
