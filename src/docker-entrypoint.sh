@@ -17,9 +17,11 @@ mkdir -p /home/$FTP_USER
 chown -R $FTP_USER:$FTP_USER /home/$FTP_USER
 echo "$FTP_USER:$FTP_PASS" | /usr/sbin/chpasswd
 
+sed -i "s/pasv_address=0.0.0.0/pasv_address=$PUBLICHOST/" /etc/vsftpd.conf
+
 touch /var/log/vsftpd.log
 tail -f /var/log/vsftpd.log | tee /dev/stdout &
 touch /var/log/xferlog
 tail -f /var/log/xferlog | tee /dev/stdout &
 
-/usr/sbin/vsftpd
+exec "$@"

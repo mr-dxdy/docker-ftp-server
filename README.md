@@ -17,11 +17,12 @@ docker run \
 	--detach \
 	--env FTP_PASS=123 \
 	--env FTP_USER=user \
+	--env PUBLICHOST=<your-public-host> \
 	--name my-ftp-server \
 	--publish 20-21:20-21/tcp \
 	--publish 40000-40009:40000-40009/tcp \
 	--volume /data:/home/user \
-	garethflowers/ftp-server
+	mrdxdy/ftp-server
 ```
 
 #### ... via `docker compose`
@@ -33,7 +34,7 @@ services:
     environment:
       - FTP_PASS=123
       - FTP_USER=user
-    image: garethflowers/ftp-server
+    image: mrdxdy/ftp-server
     ports:
       - '20-21:20-21/tcp'
       - '40000-40009:40000-40009/tcp' # Only needed for passive mode
